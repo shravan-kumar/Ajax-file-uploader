@@ -1,1 +1,32 @@
-<h1>Hello</h1>
+h1 Upload CSV
+div#message
+hr
+== form_tag import_employees_path(format: :json), method: :post, remote: true, multipart: true, id: 'upload_form'
+  div
+    == file_field_tag :file
+  div
+    == submit_tag  'Import'
+
+hr
+== form_tag employees_path, method: :get, id: 'filter_form' do
+  div
+    == label_tag :name
+    == text_field_tag :name
+  div
+    == label_tag :date
+    == text_field_tag :date
+  div
+    == label_tag :number
+    == text_field_tag :number
+  div
+    == submit_tag 'Filter'
+
+hr
+table#table
+  thead
+    tr
+      th Name
+      th Date
+      th Number
+      th Description
+  tbody

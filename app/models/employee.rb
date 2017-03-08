@@ -5,10 +5,10 @@ class Employee < ActiveRecord::Base
     CSV.foreach(file.path, headers: true) do |row|
 
       employee_hash = row.to_hash # exclude the price field
-      employee = Employee.where( name: employee_hash["name"], number: employee_hash["number"])
+      employees = Employee.where( name: employee_hash["name"], number: employee_hash["number"])
 
-      if employee.count == 1
-        product.first.update_attributes(employee_hash)
+      if employees.count > 1
+        employees.first.update_attributes(employee_hash)
       else
         Employee.create!(employee_hash)
       end # end if !employee.nil?
